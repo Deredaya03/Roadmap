@@ -1,0 +1,20 @@
+---
+import './header.css';
+import Logo from '@/continuous/Logo.astro';
+import Seccion from './components/Seccion.astro';
+import Login from './icons/login.astro';
+
+import { Seciones } from './components/DataHeader';
+---
+<header class="header" id="header-nav">
+  <div class="logo-header">
+    <a href="/">
+      <Logo />
+    </a>
+  </div>
+  <Seccion data={Seciones} />
+  <div class="Login-header">
+    <Login class="icon-header"/>
+    <p>Iniciar Sesion</p>
+  </div>
+</header>

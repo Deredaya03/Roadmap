@@ -1,0 +1,49 @@
+---
+import { isLoggedIn } from "../utils/auth/isLoggedIn";
+
+const { class: ClassName, href, type, ...rest } = Astro.props;
+const islogIn = await isLoggedIn( Astro.cookies );
+---
+
+{
+  href ? (
+    <a
+      class={`base-styles ${ClassName}`}
+      {...rest}
+      href={href}
+    >
+      {!islogIn ? <slot/> : "Dashboard"}  
+    </a>
+  ) : (
+    <button type={type} class={`base-styles ${ClassName}`} {...rest}>
+      {!islogIn ? <slot/> : "Dashboard"}  
+    </button>
+  )
+}
+
+<style is:global>
+  .base-styles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0.5rem 2rem;
+    border-radius: 4px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    &:hover {
+      opacity: 0.9;
+      transform: scale(0.98);
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+</style>

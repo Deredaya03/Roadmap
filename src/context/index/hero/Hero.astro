@@ -1,0 +1,97 @@
+---
+import Button from "@components/Button.astro";
+import "./hero.css";
+---
+
+<section class="hero flex-config" id="hero">
+  <div class="hero__image-container">
+    <canvas id="light-spot-canvas" hidden></canvas>
+    <img class="hero__image" width="200" height="200" />
+    <div class="light"></div>
+  </div>
+  <article class="hero__content">
+    <h1>Aprende a programar desde cero, sin complicaciones</h1>
+    <p>
+      Explora los diferentes temas y tecnologías del desarrollo web y complementos
+      de forma práctica y sencilla. con recursos didácticos y rutas de aprendizaje
+      personalizadas guiandote en cada paso para que tu aprendizaje sea efectivo y
+      divertido.
+    </p>
+    <Button href="/access/login" class="hero__button" server:defer
+      >Comenzar</Button
+    >
+  </article>
+</section>
+
+<script>
+  import json from "./techIcons.json" with { type: "json" };
+  import {
+    waitForImageLoad,
+    getPrevalentColor,
+  } from "@utils/get-icons-color.ts";
+  const img = document.querySelector(".hero__image") as HTMLImageElement;
+  const light = document.querySelector(".light") as HTMLDivElement;
+  const INITIAL_ICON = 0;
+  const ICONS_LENGTH = json.length - 1;
+  const INTERVAL_DURATION = 5 * 1000;
+  const ANIMATION_DURATION = INTERVAL_DURATION - 1000;
+  const canvas = document.getElementById(
+    "light-spot-canvas"
+  ) as HTMLCanvasElement;
+
+  await renderColorAndIcon({ icon: json[randomIntBetween()] });
+
+  let currentICon = "";
+  setInterval(async () => {
+    const index = randomIntBetween();
+    if (currentICon === json[index] || index > ICONS_LENGTH) return;
+    const icon = json[index];
+    currentICon = icon;
+    await renderColorAndIcon({ icon });
+    if (img) {
+      light.style.animation = `light-move 1.25s ease-in-out , light-move-out 1s ease-in-out ${ANIMATION_DURATION.toString()}ms`;
+      img.style.animation = `animate_hero_image 1s ease-in-out , animate_hero_image_out 1s ease-in-out ${ANIMATION_DURATION.toString()}ms`;
+    }
+  }, INTERVAL_DURATION);
+  function randomIntBetween() {
+    return (
+      Math.floor(Math.random() * (json.length - INITIAL_ICON + 1)) +
+      INITIAL_ICON
+    );
+  }
+
+  async function renderColorAndIcon({ icon }: { icon: string }) {
+    if (!icon) return;
+    const iconImg = icon?.toLowerCase().replaceAll(" ", "-");
+    const imagePath = `/assets/icons/${iconImg}.png`;
+    img.crossOrigin = "anonymous";
+    img.setAttribute("src", imagePath);
+    img.setAttribute("alt", icon);
+    await setLightSpotColor();
+  }
+
+  function setLightSpotColor() {
+    return new Promise<void>((resolve, reject) => {
+      const img = document.querySelector(".hero__image") as HTMLImageElement;
+      const colorVariable = document.querySelector("#hero") as HTMLElement;
+
+      if (img) {
+        img.style.animation = "none";
+        light.style.animation = "none";
+        img.offsetHeight;
+      }
+
+      img.onload = () => {
+        const color1 = getPrevalentColor({ img, x: 350, y: 200, canvas });
+        const color2 = getPrevalentColor({ img, x: 400, y: 350, canvas });
+        document.body.style.setProperty("--light-spot-color", color1);
+        const mixColor = `color-mix(in srgb, ${color1} 90%, ${color2} 10%)`;
+
+        resolve();
+      };
+      img.onerror = (err) => {
+        reject(err);
+      };
+    });
+  }
+</script>

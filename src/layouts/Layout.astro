@@ -1,17 +1,51 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+---
+import BaseHead from "./BaseHead.astro";
+const { title, description, image = "/images/portada.png" } = Astro.props;
+import Button from "@components/Button.astro";
+import Header from "@context/header/header.astro";
+import { getLangFromUrl } from "@/i18n/utils"
+const lang = getLangFromUrl(Astro.url);
+---
+
+<html lang={lang}>
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+  </body>
 </html>
 
+<style is:inline>
+  main{
+    max-width: 1200px;
+    padding-bottom: 3rem;
+  }
+  .button-base {
+    background: linear-gradient(to top, rgb(51, 137, 235, 0.6), transparent);
+    border: solid 1px rgb(51, 137, 235, 0.5);
+  }
+  .login-button {
+    background: linear-gradient(to top, var(--light-spot-color), transparent);
+    border: solid 1px rgb(51, 137, 235, 0.1);
+    transition:
+      background 0.3s ease,
+      border 0.3s ease;
+    &:hover {
+      background: linear-gradient(to top, rgb(51, 137, 235, 0.6), transparent);
+      border: solid 1px rgb(51, 137, 235, 0.5);
+    }
+  }
+  .button-desktop {
+    display: inline-flex;
+    @media (width < 768px) {
+      display: none;
+    }
+  }
+</style>
 <style>
 	html,
 	body {

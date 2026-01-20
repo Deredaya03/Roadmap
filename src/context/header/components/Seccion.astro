@@ -1,0 +1,28 @@
+---
+interface Data {
+  href: string;
+  text: string;
+  icon: any;
+}
+
+interface Props {
+  data: Data[];
+}
+
+const { data } = Astro.props;
+---
+
+<section class="content-header">
+  {
+    data.map((item) => {
+      const Icono = item.icon; 
+      
+      return (
+        <a href={item.href} class="seccion-link">
+          <Icono class="icon-header"/>
+          <p>{item.text}</p>
+        </a>
+      )
+    })
+  }
+</section>
