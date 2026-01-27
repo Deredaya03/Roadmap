@@ -10,6 +10,10 @@
   },
   "dependencies": {
     "@astrojs/vercel": "^9.0.3",
-    "astro": "^5.16.9"
+    "@auth/core": "^0.34.3",
+    "@auth/supabase-adapter": "^1.11.1",
+    "@supabase/supabase-js": "^2.91.1",
+    "astro": "^5.16.9",
+    "auth-astro": "^4.2.0"
   }
 }

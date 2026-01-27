@@ -1,0 +1,61 @@
+---
+import GmailIcon from "@/context/login/gmailIcon.astro";
+import { SignIn, SignOut } from "auth-astro/components";
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
+
+interface Props {
+  title: string;
+  buttonText: string;
+  type: 'login' | 'register';
+  showName?: boolean;
+  showForgotPass?: boolean;
+  isActive?: boolean;
+}
+
+const { title, buttonText, type, showName = false, isActive = false } = Astro.props;
+
+type InputTypes = 'text' | 'email' | 'password';
+interface FormField {
+  type: InputTypes;
+  placeholder: string;
+  show: boolean;
+}
+
+const fields: FormField[] = [
+  { type: 'text', placeholder: 'Nombre Completo', show: showName },
+  { type: 'email', placeholder: 'Correo', show: true },
+  { type: 'password', placeholder: 'Contraseña', show: true },
+];
+---
+
+<div 
+  class={`form ${type} ${isActive ? 'active' : ''}`} 
+  data-has-session={session ? "true" : "false"}
+>
+
+  <h2>{title}</h2>
+  <div class="sso">
+    <SignIn provider="google" class="sso-button">
+      <GmailIcon width="24" height="24" />
+    </SignIn>
+  </div>
+  <p>O utiliza tu dirección de correo electrónico</p>
+  
+  <form>
+    {fields.map(field => field.show && (
+      <input type={field.type} placeholder={field.placeholder} />
+    ))}
+    <button class="submit-button" type="submit">{buttonText}</button>
+  </form>
+</div>
+
+<script>
+  const formContainer = document.querySelector('[data-has-session]');
+  const hasSession = formContainer?.getAttribute('data-has-session') === "true";
+
+  if (hasSession) {
+    window.location.href = '/';
+  }
+</script>

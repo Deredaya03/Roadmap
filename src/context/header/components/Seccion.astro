@@ -18,7 +18,7 @@ const { data } = Astro.props;
       const Icono = item.icon; 
       
       return (
-        <a href={item.href} class="seccion-link">
+        <a href={item.href} class={`seccion-link ${item.href === Astro.url.pathname ? 'active' : ''}`}>
           <Icono class="icon-header"/>
           <p>{item.text}</p>
         </a>

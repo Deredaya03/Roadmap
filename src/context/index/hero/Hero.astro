@@ -1,6 +1,17 @@
 ---
 import Button from "@components/Button.astro";
 import "./hero.css";
+
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
+const targetUrl = session ? "/me/cursos" : "/login";
+const buttonText = session ? "Ir a mis cursos" : "Comenzar";
+
+import { getI18N } from "@/i18n/index"
+
+const { currentLocale } = Astro
+const i18n = getI18N({ currentLocale })
 ---
 
 <section class="hero flex-config" id="hero">
@@ -10,15 +21,12 @@ import "./hero.css";
     <div class="light"></div>
   </div>
   <article class="hero__content">
-    <h1>Aprende a programar desde cero, sin complicaciones</h1>
+    <h1>{i18n.INTRO_TITLE}</h1>
     <p>
-      Explora los diferentes temas y tecnologías del desarrollo web y complementos
-      de forma práctica y sencilla. con recursos didácticos y rutas de aprendizaje
-      personalizadas guiandote en cada paso para que tu aprendizaje sea efectivo y
-      divertido.
+      {i18n.INTRO_DESCRIPTION}
     </p>
-    <Button href="/access/login" class="hero__button" server:defer
-      >Comenzar</Button
+    <Button href={targetUrl} class="hero__button" server:defer
+      >{buttonText}</Button
     >
   </article>
 </section>

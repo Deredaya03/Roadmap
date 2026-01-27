@@ -1,7 +1,7 @@
 {
-	"SEO_TITLE_1": "Premios ESLAND",
-	"SEO_TITLE_2": "- Celebrando lo mejor del streaming y los creadores de contenido",
-	"SEO_DESCRIPTION": "Descubre a los mejores creadores de contenido de España, Latinoamérica y Andorra. ¡Vota por tus favoritos! Celebra la innovación y el talento de Twitch, YouTube y más",
+	"SEO_TITLE_1": "Roadmap Developer",
+	"SEO_TITLE_2": "- Tu guía definitiva para convertirte en desarrollador",
+	"SEO_DESCRIPTION": "Descubre rutas de aprendizaje personalizadas, recursos didácticos y playgrounds interactivos para aprender a programar desde cero. ¡Comienza tu viaje como desarrollador hoy!",
 	"SEO": {
 		"ARCHIVO_TITLE": "Archivo de las ediciones anteriores - Premios ESLAND",
 		"ARCHIVO_DESCRIPTION": "Repasa los mejores momentos de ediciones anteriores",
@@ -20,18 +20,17 @@
 		"ERROR_404_DESCRIPTION": "Página no encontrada (Error 404). Verifica la URL o explora nuestras secciones. ¿Necesitas ayuda? Contáctenos."
 	},
 	"HEADER": {
-		"LOGO": "Volver a la página de inicio de los Premios ESLAND"
+		"LOGO": "Volver a la página de inicio de los Roadmap Developer"
 	},
-	"HEADER_VOTE": "VOTA",
-	"HEADER_INFO": "INFO",
-	"HEADER_ARCHIVE": "ARCHIVO",
-	"HEADER_BUTTON": "CRITERIOS DE NOMINACIÓN",
-	"HERO_SUBTITLE": "Premios a la Comunidad Hispanohablante de Streaming",
-	"INTRO_TITLE": "Bienvenidos/as",
-	"INTRO_TITLE_AFTER_BR": "a los Premios ESLAND",
-	"INTRO_DESCRIPTION_1": "El cine tiene los Oscars, la música tiene los Grammy y <strong>el streaming tiene los ESLAND</strong>. Los premios que celebran la creatividad y el talento de los mejores creadores de contenido de <strong>la comunidad hispanohablante</strong>",
-	"INTRO_DESCRIPTION_2": "España, Latinoamérica y Andorra unidas por creadores, creadoras y sus comunidades, para recordar y revivir <strong>algunos de los mejores momentos del año.</strong>",
-	"INTRO_DESCRIPTION_3": "Tras dos galas celebradas, una en el Palau de la Música Catalana de Barcelona, y otra en el Auditorio Nacional de la Ciudad de México, solo queda esperar a <strong>la tercera edición en Andorra.</strong>",
+	"HEADER_INICIO": "INICIO",
+	"HEADER_CURSOS": "CURSOS",
+	"HEADER_DASHBOARD": "DASHBOARD",
+	"HEADER_CERTIFICADOS": "CERTIFICADOS",
+	"HEADER_AREAS": "AREAS",
+	"HEADER_BUTTON_LOGIN": "LOGIN",
+	"HEADER_BUTTON_SIGNOUT": "SIGNOUT",
+	"INTRO_TITLE": "Aprende a programar desde cero, sin complicaciones",
+	"INTRO_DESCRIPTION": "Explora los diferentes temas y tecnologías del desarrollo web y complementos de forma práctica y sencilla. con recursos didácticos y rutas de aprendizaje personalizadas guiandote en cada paso para que tu aprendizaje sea efectivo y divertido.",
 	"BENTO_TITLE_1": "Andorra: el cénit de los premios ESLAND",
 	"BENTO_CONTENT_1": "Una nueva edición <strong>cargada de novedades</strong> y contenido, que empezará varias semanas antes de la ansiada gala. <strong> Directos especiales, colaboraciones, conciertos y mucho más</strong> en lo que será una auténtica fiesta dedicada a la creación de contenido.",
 	"BENTO_TITLE_2": "La alfombra blanca",
@@ -43,7 +42,6 @@
 	"BENTO_TITLE_4": "Disfruta del Reddit de la comunidad",
 	"BENTO_CONTENT_4": "Este año, el reddit no formará parte de las votaciones de los premios, pero sí que <strong>formará parte de la comunidad</strong>. El subreddit oficial de los Premios ESLAND está abierto para ti. Comparte tus clips, opiniones e <strong>interactúa con toda la comunidad</strong> del streaming hispanohablante.",
 	"VIDEO_ALT": "ESLAND - Premios a la comunidad hispanohablante de Streaming",
-	"VIDEO_BUTTON": "Vota",
 	"PREFOOTER_VIDEO_TITLE": "Guía de la 3ª Edición de los premios ESLAND",
 	"ARCHIVO": {
 		"HERO_TITLE": "Ediciones anteriores",

@@ -1,10 +1,10 @@
 ---
 import BaseHead from "./BaseHead.astro";
-const { title, description, image = "/images/portada.png" } = Astro.props;
-import Button from "@components/Button.astro";
+const { title, description, image = "/images/Logo.png" } = Astro.props;
 import Header from "@context/header/header.astro";
 import { getLangFromUrl } from "@/i18n/utils"
 const lang = getLangFromUrl(Astro.url);
+export const prerender = false;
 ---
 
 <html lang={lang}>
@@ -23,6 +23,7 @@ const lang = getLangFromUrl(Astro.url);
   main{
     max-width: 1200px;
     padding-bottom: 3rem;
+    margin: 8rem auto;
   }
   .button-base {
     background: linear-gradient(to top, rgb(51, 137, 235, 0.6), transparent);

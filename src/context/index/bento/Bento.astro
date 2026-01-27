@@ -1,6 +1,24 @@
 ---
 import './bento.css';
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request);
+
+const protectedRoutes = ['/me/dashboard', '/frontend/cursos', '/frontend/practicas'];
+
+const items = [
+  { url: '/me/dashboard'},
+  { url: '/frontend/cursos'},
+  { url: '/'},
+  { url: '/frontend/practicas'}
+];
 ---
+
 <div class="bento-content">
-  {Array(4).fill(0).map(() => <div class="bento-item" />)}
+  {items.map(item => {
+    const finalUrl = (protectedRoutes.includes(item.url) && !session) ? "/login" : item.url;
+
+    return (
+      <a href={finalUrl} class="bento-item"/>
+    )
+  })}
 </div>

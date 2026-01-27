@@ -5,6 +5,11 @@ import Seccion from './components/Seccion.astro';
 import Login from './icons/login.astro';
 
 import { Seciones } from './components/DataHeader';
+
+import { SignOut } from "auth-astro/components";
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
 ---
 <header class="header" id="header-nav">
   <div class="logo-header">
@@ -13,8 +18,18 @@ import { Seciones } from './components/DataHeader';
     </a>
   </div>
   <Seccion data={Seciones} />
-  <div class="Login-header">
-    <Login class="icon-header"/>
-    <p>Iniciar Sesion</p>
-  </div>
+  {
+    session ? (
+      <>
+        <SignOut><span class="signOut">Cerrar Sesion</span></SignOut>
+      </>
+    ) : (
+      <>
+        <a class="Login-header" href="/login">
+          <Login class="icon-header"/>
+          <p>Iniciar Sesion</p>
+        </a>
+      </>
+    )
+  }
 </header>

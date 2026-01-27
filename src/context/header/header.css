@@ -46,6 +46,13 @@
     color: var(--accent-color);
     }
   }
+
+  .active {
+    color: var(--accent-color);
+    p {
+      color: var(--accent-color);
+    }
+  }
 }
 
 .icon-header {
@@ -84,6 +91,18 @@
       color: rgb(0, 255, 225);
       text-shadow: 0 0 8px rgb(from var(--accent-color) r g b / 0.8);
     }
+  }
+}
+
+.signOut {
+  transition: all 0.3s ease;
+  margin: 0;
+  color: white;
+  background: transparent;
+
+  &:hover {
+    color: rgb(0, 255, 225);
+    text-shadow: 0 0 8px rgb(from var(--accent-color) r g b / 0.8);
   }
 }
 

@@ -1,0 +1,66 @@
+---
+import LayoutLogin from "@/layouts/LayoutLogin.astro";
+import Title from "@/context/login/title.astro";
+import AuthForm from "@/context/login/form.astro";
+---
+<LayoutLogin title="Iniciar Sesión" description="Accede a tu cuenta para continuar.">
+  <div class="bg">
+  <div class="card">
+    <div class="card-bg"></div>
+    
+    <div class="hero register active">
+      <Title 
+        title="Bienvenido de nuevo" 
+        description="Inicie sesión para continuar con los cursos" 
+        btnText="Iniciar Sesión" 
+      />
+    </div>
+
+    <AuthForm 
+      type="register" 
+      title="Registrar" 
+      buttonText="Registrar" 
+      showName={true} 
+      isActive={true} 
+    />
+
+    <div class="hero login">
+      <Title 
+        title="Bienvenido" 
+        description="Registrese para comenzar con tus cursos." 
+        btnText="Registrar" 
+      />
+    </div>
+
+    <AuthForm 
+      type="login" 
+      title="Iniciar Sesión" 
+      buttonText="Iniciar Sesión" 
+      showForgotPass={true} 
+    />
+  </div>
+</div>
+
+  <script>
+  const loginHero = document.querySelector(".hero.login") as HTMLElement;
+  const loginForm = document.querySelector(".form.login") as HTMLElement;
+  const registerHero = document.querySelector(".hero.register") as HTMLElement;
+  const registerForm = document.querySelector(".form.register") as HTMLElement;
+  const cardBg = document.querySelector(".card-bg") as HTMLElement;
+  
+  const toggleButtons = document.querySelectorAll(".toggle-btn");
+
+  const toggleView = () => {
+    const loginActive = loginHero.classList.contains("active");
+    cardBg.classList.toggle("login", !loginActive);
+
+    [loginHero, loginForm, registerHero, registerForm].forEach((el) => {
+      el?.classList.toggle("active");
+    });
+  };
+
+  toggleButtons.forEach(btn => {
+    btn.addEventListener('click', toggleView);
+  });
+</script>
+</LayoutLogin>
