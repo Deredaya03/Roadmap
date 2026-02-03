@@ -1,7 +1,19 @@
 ---
 const { title , description, btnText, Class } = Astro.props;
+import Logo from '@/continuous/Logo.astro';
 ---
-
+<div class="logo-header">
+    <a href="/">
+      <Logo />
+    </a>
+  </div>
 <h2>{title}</h2>
 <p>{description}</p>
 <button type="button" class="submit-button toggle-btn">{btnText}</button>
+
+<style>
+  .logo-header {
+    width: 15rem;
+    height: 15rem;
+  }
+</style>

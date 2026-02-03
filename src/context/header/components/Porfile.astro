@@ -1,0 +1,99 @@
+---
+import { getSession } from "auth-astro/server";
+
+const session = await getSession(Astro.request);
+const userImage = session?.user?.image;
+const userName = session?.user?.name;
+
+import { SignOut } from "auth-astro/components";
+---
+
+<section class="profile-section">
+  {
+      <div id="Porfile" class="profile-container">
+        <img 
+          src={userImage} 
+          alt={`Foto de perfil de ${userName}`} 
+          class="profile-avatar"
+          referrerpolicy="no-referrer" 
+        />
+      </div>
+      <article class="profile-menu">
+        <a href="/me/dashboard">Mi Perfil</a>
+        <SignOut class="signOut-button">Cerrar Sesión</SignOut>
+      </article>
+ }
+</section>
+
+<script>
+  const profileButton = document.getElementById('Porfile');
+
+  profileButton?.addEventListener('click', () => {
+    const signOutButton = document.querySelector('.profile-menu');
+    signOutButton?.classList.toggle('active');
+  });
+</script>
+
+<style>
+  .profile-section {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile-menu {
+    position: absolute;
+    top: 60px; /* Ajusta según el tamaño de tu avatar */
+    right: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .profile-menu.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .signOut-button {
+    background: #ff4d4d;
+    color: white;
+    width: 12rem;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  .profile-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    cursor: pointer;
+  }
+
+  .profile-avatar {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+</style>

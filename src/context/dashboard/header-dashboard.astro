@@ -1,0 +1,29 @@
+---
+import { getSession } from "auth-astro/server";
+const session = await getSession(Astro.request);
+
+const userImage = session?.user?.image;
+const fullName = session?.user?.name;
+const firstName = fullName ? fullName.split(' ')[0] : '';
+---
+
+<section class="header-dashboard">
+  <div class="profile-section">  
+    {session ? (
+      <>
+        <img 
+          src={userImage} 
+          alt={`Foto de perfil de ${firstName}`} 
+          class="profile-avatar"
+          referrerpolicy="no-referrer"
+        />
+        <div class="profile-text">
+          <h2 class="title">Hola, {firstName}!</h2>
+          <p class="subTitle">Bienvenido a tu panel de control</p>
+        </div>
+      </>
+    ) : (
+      <h1></h1>
+    )}
+  </div>
+</section>

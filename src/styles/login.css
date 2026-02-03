@@ -206,6 +206,7 @@ h2 {
   gap: 12px;
   
   .sso-button {
+    cursor: pointer;
     background: #13111b;
     display: grid;
     place-items: center;

@@ -3,12 +3,11 @@ import './header.css';
 import Logo from '@/continuous/Logo.astro';
 import Seccion from './components/Seccion.astro';
 import Login from './icons/login.astro';
+import MenuIcon from './icons/menu.astro';
+import Porfile from './components/Porfile.astro';
 
 import { Seciones } from './components/DataHeader';
-
-import { SignOut } from "auth-astro/components";
 import { getSession } from "auth-astro/server";
-
 const session = await getSession(Astro.request);
 ---
 <header class="header" id="header-nav">
@@ -21,7 +20,10 @@ const session = await getSession(Astro.request);
   {
     session ? (
       <>
-        <SignOut><span class="signOut">Cerrar Sesion</span></SignOut>
+        <div class="profile-seccion">
+          <Porfile />
+          <MenuIcon class="menu-icon"/>
+        </div>
       </>
     ) : (
       <>
@@ -33,3 +35,12 @@ const session = await getSession(Astro.request);
     )
   }
 </header>
+
+<script>
+  const menuIcon = document.querySelector('.menu-icon');
+  const headerNav = document.getElementById('header-nav');
+
+  menuIcon?.addEventListener('click', () => {
+    headerNav?.classList.toggle('nav-open');
+  });
+</script>

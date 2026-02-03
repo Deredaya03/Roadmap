@@ -3,9 +3,12 @@ import Layout from '../layouts/Layout.astro';
 import Hero from '@context/index/hero/Hero.astro';
 import Bento from '@context/index/bento/Bento.astro';
 export const prerender = false;
+import { BentoDb } from '@context/index/bento/components/BentoDb';
 ---
 
 <Layout title="Roadmap Developer - Tu guía definitiva para convertirte en desarrollador" description="Descubre rutas de aprendizaje personalizadas, recursos didácticos y playgrounds interactivos para aprender a programar desde cero. ¡Comienza tu viaje como desarrollador hoy!">
   <Hero />
-  <Bento />
+  <!-- <Bento items={Frontend} title="Explora todas las areas del Frontend" /> -->
+  <!-- <Bento items={Vba} title="Explora todas las areas de VBA" /> -->
+  <Bento items={BentoDb} />
 </Layout>

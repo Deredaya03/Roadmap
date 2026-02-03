@@ -1,0 +1,140 @@
+/* Dashboard Header */
+
+.header-dashboard {
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.subTitle {
+  font-size: 1.5rem;
+  color: #888;
+}
+
+/* Dasboard Container */
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding: 2rem 1rem;
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+@media (min-width: 768px) {
+  .dashboard-container {
+    max-width: 1024px;
+  }
+}
+
+/* Dashboard Course Section */
+
+.course-subtitle {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 2rem;
+}
+
+.course-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+.course-card {
+  background: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+  transition: background 0.3s ease;
+  border: 1px solid #222;
+}
+
+.progress-circle-container {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circular-progress {
+  --size: 10rem;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: conic-gradient(
+    var(--accent-color, #00ffdf) calc(var(--progress)), 
+    #333 0deg
+  );
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.inner-circle {
+  width: 9rem;
+  height: 9rem;
+  background: #1a1a1a;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.progress-value {
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.course-info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
+}
+
+.course-info p {
+  margin: 0;
+  color: #666;
+  font-size: 1rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.course-card {
+  animation: fadeIn 0.5s ease forwards;
+}

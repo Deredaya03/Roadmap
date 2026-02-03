@@ -7,7 +7,7 @@ import Areas from '../icons/areas.astro';
 export const Seciones = [
   { href: '/', text: 'Inicio', icon: Home },
   { href: '/cursos', text: 'Cursos', icon: Cursos },
-  { href: '/me/dashboard', text: 'Dashboard', icon: Dashboard },
+  { href: '/me/dashboard', text: 'Perfil', icon: Dashboard },
   { href: '/me/certificados', text: 'Certificados', icon: Certificados },
   { href: '/areas', text: 'Areas', icon: Areas },
 ];

@@ -4,7 +4,7 @@ import { defineMiddleware } from "astro:middleware";
 export const onRequest = defineMiddleware(async (context, next) => {
   const { pathname } = context.url;
 
-  if (pathname.startsWith("/me")) {
+  if (pathname.startsWith("/me") || pathname.startsWith("/areas")) {
     const session = await getSession(context.request);
 
     if (!session) {

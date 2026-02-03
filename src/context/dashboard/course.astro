@@ -1,0 +1,31 @@
+---
+import Title from "@components/Title.astro";
+
+const courses = [
+  { name: "Curso de Astro", progress: 50 },
+  { name: "Curso de JavaScript", progress: 70 },
+  { name: "Curso de CSS", progress: 30 }
+];
+---
+
+<Title>Proceso de tus cursos</Title>
+<p class="course-subtitle">Aquí puedes ver el progreso de los cursos que has comenzado.</p>
+
+<div class="course-container">
+  {courses.map(course => (
+    <div class="course-card">
+      <div class="progress-circle-container">
+        <div class="circular-progress" style={`--progress: ${course.progress}%;`}>
+          <div class="inner-circle">
+            <span class="progress-value">{course.progress}%</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="course-info">
+        <h3>{course.name}</h3>
+        <p>Progreso actual</p>
+      </div>
+    </div>
+  ))}
+</div>

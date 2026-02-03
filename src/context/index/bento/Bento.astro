@@ -1,24 +1,56 @@
 ---
 import './bento.css';
 import { getSession } from "auth-astro/server";
+
 const session = await getSession(Astro.request);
 
-const protectedRoutes = ['/me/dashboard', '/frontend/cursos', '/frontend/practicas'];
+interface BentoItem {
+  url: string;
+  image?: string;
+  protected: boolean;
+  class?: string;
+  title?: string;
+}
 
-const items = [
-  { url: '/me/dashboard'},
-  { url: '/frontend/cursos'},
-  { url: '/'},
-  { url: '/frontend/practicas'}
-];
+interface Props {
+  items: BentoItem[];
+  title?: string;
+}
+
+const { items } = Astro.props;
 ---
 
 <div class="bento-content">
-  {items.map(item => {
-    const finalUrl = (protectedRoutes.includes(item.url) && !session) ? "/login" : item.url;
+  {items.map((item, index) => {
+    let finalUrl = item.url;
+    if (item.protected && !session) {
+      finalUrl = "/login";
+    }
+
+    const Element = item.url === '' ? 'div' : 'a';
+    
+    const gridClass = `div${index + 1}`; 
+    const isTitle = item.class === 'title';
 
     return (
-      <a href={finalUrl} class="bento-item"/>
+      <Element 
+        href={Element === 'a' ? finalUrl : undefined} 
+        class:list={[
+          gridClass, 
+          item.class, 
+          'bento-item-anim',
+          { 'is-locked': !session && !isTitle && item.image },
+          { 'no-link': item.url === '' } // Clase opcional para quitar el pointer
+        ]}
+        style={{
+          backgroundImage: item.image ? `url('${item.image}')` : '',
+          '--delay': isTitle ? '0s' : `${index * 0.03}s` 
+        }}
+      >
+        {item.title && <span class="card-title">{item.title}</span>}
+      </Element>
     )
   })}
 </div>
+
+<script src="./components/scriptBento.js"></script>
